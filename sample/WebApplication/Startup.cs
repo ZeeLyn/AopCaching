@@ -39,7 +39,7 @@ namespace WebApplication
 
 			//services.AddAopCacheInRedis(options =>
 			//{
-			//	options.Endpoints = new[] { "192.168.1.254:6379,password=nihao123,defaultDatabase=15", "192.168.1.253:6379,password=nihao123,defaultDatabase=15" };
+			//	options.Endpoints = new[] { "localhost:6379,password=123456,defaultDatabase=15", "localhost:6380,password=123456,defaultDatabase=15" };
 			//	options.UsePartition = true;
 			//	options.Expiration = TimeSpan.FromMinutes(10);
 			//	options.CacheMethodFilter = new CacheMethodFilter
@@ -106,7 +106,7 @@ namespace WebApplication
 			#region Use redis
 			builder.AddAopCacheInRedis(options =>
 			{
-				options.Endpoints = new[] { "192.168.1.254:6379,password=nihao123,defaultDatabase=15", "192.168.1.253:6379,password=nihao123,defaultDatabase=15" };
+				options.Endpoints = new[] { "localhost:6379,password=123456,defaultDatabase=15", "localhost:6380,password=123456,defaultDatabase=15" };
 				//options.ShortKey = true;
 				//options.UsePartition = true;
 				options.Expiration = TimeSpan.FromMinutes(10);
