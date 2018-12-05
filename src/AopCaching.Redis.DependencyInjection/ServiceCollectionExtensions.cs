@@ -39,7 +39,7 @@ namespace AopCaching.Redis.DependencyInjection
 			else
 			{
 				RedisHelper.Initialization(new CSRedis.CSRedisClient(options.Endpoints.First()));
-				serviceCollection.AddSingleton<IAopCaching, RedisCaching>();
+				serviceCollection.AddSingleton<IAopCaching, AopRedisCaching>();
 			}
 			if (options.PreventPenetrationPolicy?.BloomFilterPolicy != null)
 			{
@@ -54,6 +54,8 @@ namespace AopCaching.Redis.DependencyInjection
 				configurator.ThrowAspectException = false;
 				//Exclude methods that do not return a value
 				configurator.NonAspectPredicates.Add(method => method.ReturnType == typeof(void) || method.ReturnType == typeof(Task));
+				configurator.Interceptors.AddTyped<AopCachingInterceptor>(method =>
+					method.GetCustomAttributes(true).Any(p => p.GetType() == typeof(AopCachingAttribute)));
 
 				if (options.CacheMethodFilter?.IncludeService?.Any() ?? false)
 					configurator.Interceptors.AddTyped<AopCachingInterceptor>(options.CacheMethodFilter

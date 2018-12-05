@@ -72,7 +72,7 @@ namespace WebApplication
 				options.Expiration = TimeSpan.FromMinutes(10);
 				options.CacheMethodFilter = new CacheMethodFilter
 				{
-					IncludeService = new[] { "WebApplication.CacheService" }
+					IncludeService = new[] { "WebApplication.*Service" }
 				};
 				options.PreventPenetrationPolicy = new PreventPenetrationPolicy
 				{

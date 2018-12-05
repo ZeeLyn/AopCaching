@@ -2,13 +2,13 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Reflection;
+using AopCaching.Core;
 using AspectCore.DynamicProxy;
-using IAopCaching = AopCaching.Core.IAopCaching;
 
 namespace AopCaching.Redis
 {
 	[NonAspect]
-	public class RedisCaching : IAopCaching
+	public class AopRedisCaching : IAopCaching
 	{
 		private static MethodInfo Method { get; }
 
@@ -18,7 +18,7 @@ namespace AopCaching.Redis
 		protected internal static readonly ConcurrentDictionary<Type, Type>
 			ValueGenericType = new ConcurrentDictionary<Type, Type>();
 
-		static RedisCaching()
+		static AopRedisCaching()
 		{
 			Method = typeof(RedisHelper).GetMethods().First(p => p.Name == "Get" && p.ContainsGenericParameters);
 		}
@@ -26,8 +26,6 @@ namespace AopCaching.Redis
 
 		public void Set(string key, object value, Type type, TimeSpan expire)
 		{
-			//var valueType = ValueGenericType.GetOrAdd(type, t => typeof(CacheValue<>).MakeGenericType(t));
-			//Activator.CreateInstance(valueType, value)
 			RedisHelper.Set(key, new CacheValue<object>(value), (int)expire.TotalSeconds);
 		}
 

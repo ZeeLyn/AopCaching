@@ -22,7 +22,7 @@ public IServiceProvider ConfigureServices(IServiceCollection services)
                 options.UsePartition = true;
 				options.CacheMethodFilter = new CacheMethodFilter
 				{
-					IncludeService = new[] { "WebApplication.CacheService" }
+					IncludeService = new[] { "WebApplication.*Service" }
 				};
 				options.PreventPenetrationPolicy = new PreventPenetrationPolicy
 				{
@@ -59,7 +59,7 @@ public IServiceProvider ConfigureServices(IServiceCollection services)
                 options.UsePartition = true;
 				options.CacheMethodFilter = new CacheMethodFilter
 				{
-					IncludeService = new[] { "WebApplication.CacheService" }
+					IncludeService = new[] { "WebApplication.*Service" }
 				};
 				options.PreventPenetrationPolicy = new PreventPenetrationPolicy
 				{

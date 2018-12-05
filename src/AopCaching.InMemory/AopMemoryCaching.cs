@@ -1,17 +1,17 @@
 ﻿using System;
+using AopCaching.Core;
 using AspectCore.DynamicProxy;
 using Microsoft.Extensions.Caching.Memory;
-using IAopCaching = AopCaching.Core.IAopCaching;
 
 
 namespace AopCaching.InMemory
 {
 	[NonAspect]
-	public class MemoryCaching : IAopCaching
+	public class AopMemoryCaching : IAopCaching
 	{
 		private IMemoryCache Cache { get; }
 
-		public MemoryCaching(IMemoryCache cache)
+		public AopMemoryCaching(IMemoryCache cache)
 		{
 			Cache = cache;
 		}

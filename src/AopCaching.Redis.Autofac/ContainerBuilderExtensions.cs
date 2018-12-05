@@ -39,7 +39,7 @@ namespace AopCaching.Redis.Autofac
 			else
 			{
 				RedisHelper.Initialization(new CSRedis.CSRedisClient(options.Endpoints.First()));
-				containerBuilder.RegisterType<RedisCaching>().As<IAopCaching>().PropertiesAutowired().SingleInstance();
+				containerBuilder.RegisterType<AopRedisCaching>().As<IAopCaching>().PropertiesAutowired().SingleInstance();
 			}
 
 			containerBuilder.RegisterType(options.CacheKeyGenerator).As<ICacheKeyGenerator>().PropertiesAutowired().SingleInstance();
@@ -58,6 +58,8 @@ namespace AopCaching.Redis.Autofac
 
 				//Exclude methods that do not return a value
 				configurator.NonAspectPredicates.Add(method => method.ReturnType == typeof(void) || method.ReturnType == typeof(Task));
+				configurator.Interceptors.AddTyped<AopCachingInterceptor>(method =>
+					method.GetCustomAttributes(true).Any(p => p.GetType() == typeof(AopCachingAttribute)));
 
 				if (options.CacheMethodFilter?.IncludeService?.Any() ?? false)
 					configurator.Interceptors.AddTyped<AopCachingInterceptor>(options.CacheMethodFilter

@@ -30,7 +30,7 @@ namespace AopCaching.InMemory.DependencyInjection
 			serviceCollection.AddSingleton<BaseCacheOptions>(options);
 			serviceCollection.AddSingleton(typeof(ICacheKeyGenerator), options.CacheKeyGenerator);
 			serviceCollection.AddSingleton<IMemoryCache, MemoryCache>();
-			serviceCollection.AddSingleton<IAopCaching, MemoryCaching>();
+			serviceCollection.AddSingleton<IAopCaching, AopMemoryCaching>();
 			if (options.PreventPenetrationPolicy?.BloomFilterPolicy != null)
 			{
 				if (options.PreventPenetrationPolicy.BloomFilterPolicy.Enable)
@@ -43,6 +43,8 @@ namespace AopCaching.InMemory.DependencyInjection
 				configurator.ThrowAspectException = false;
 				//Exclude methods that do not return a value
 				configurator.NonAspectPredicates.Add(method => method.ReturnType == typeof(void) || method.ReturnType == typeof(Task));
+				configurator.Interceptors.AddTyped<AopCachingInterceptor>(method =>
+					method.GetCustomAttributes(true).Any(p => p.GetType() == typeof(AopCachingAttribute)));
 
 				if (options.CacheMethodFilter?.IncludeService?.Any() ?? false)
 					configurator.Interceptors.AddTyped<AopCachingInterceptor>(options.CacheMethodFilter

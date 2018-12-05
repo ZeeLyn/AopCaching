@@ -30,7 +30,7 @@ namespace AopCaching.InMemory.Autofac
 			containerBuilder.RegisterInstance(options).As<BaseCacheOptions>().SingleInstance();
 			containerBuilder.RegisterType(options.CacheKeyGenerator).As<ICacheKeyGenerator>().PropertiesAutowired().SingleInstance();
 			containerBuilder.RegisterType<MemoryCache>().As<IMemoryCache>().PropertiesAutowired().SingleInstance();
-			containerBuilder.RegisterType<MemoryCaching>().As<IAopCaching>().PropertiesAutowired().SingleInstance();
+			containerBuilder.RegisterType<AopMemoryCaching>().As<IAopCaching>().PropertiesAutowired().SingleInstance();
 			if (options.PreventPenetrationPolicy?.BloomFilterPolicy != null)
 			{
 				if (options.PreventPenetrationPolicy.BloomFilterPolicy.Enable)
@@ -44,6 +44,8 @@ namespace AopCaching.InMemory.Autofac
 				configurator.ThrowAspectException = false;
 				//Exclude methods that do not return a value
 				configurator.NonAspectPredicates.Add(method => method.ReturnType == typeof(void) || method.ReturnType == typeof(Task));
+				configurator.Interceptors.AddTyped<AopCachingInterceptor>(method =>
+					method.GetCustomAttributes(true).Any(p => p.GetType() == typeof(AopCachingAttribute)));
 
 				if (options.CacheMethodFilter?.IncludeService?.Any() ?? false)
 					configurator.Interceptors.AddTyped<AopCachingInterceptor>(options.CacheMethodFilter
