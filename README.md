@@ -32,7 +32,7 @@ AopCaching.Redis.DependencyInjection|[![NuGet package](https://buildstats.info/n
 [AspectCore](https://github.com/dotnetcore/AspectCore-Framework) is an Aspect-Oriented Programming based cross platform framework for .NET Core and .NET Framework.
 Core support for aspect-interceptor,dependency injection integration , web applications , data validation , and more.
 
-[CSRedisCore](https://github.com/2881099/csredis) is a High-performance redis client
+[CSRedisCore](https://github.com/2881099/csredis) is a High-performance redis client.
 
 
 # Usage
