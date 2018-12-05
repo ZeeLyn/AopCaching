@@ -29,7 +29,6 @@ AopCaching.Redis.Autofac|[![NuGet package](https://buildstats.info/nuget/AopCach
 AopCaching.Redis.DependencyInjection|[![NuGet package](https://buildstats.info/nuget/AopCaching.Redis.DependencyInjection)](https://www.nuget.org/packages/AopCaching.Redis.DependencyInjection)
 
 # Dependencies
-
 Packages | Description
 ---------|------
 [AspectCore](https://github.com/dotnetcore/AspectCore-Framework) | An Aspect-Oriented Programming based cross platform framework for .NET Core and .NET Framework.Core support for aspect-interceptor,dependency injection integration , web applications , data validation , and more.
