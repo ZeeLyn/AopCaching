@@ -1,4 +1,4 @@
-![](banner.png?raw=true)
+![AopCaching](banner.png?raw=true)
 
 
 # AopCaching
@@ -28,10 +28,11 @@ AopCaching.InMemory.DependencyInjection|[![NuGet package](https://buildstats.inf
 AopCaching.Redis.Autofac|[![NuGet package](https://buildstats.info/nuget/AopCaching.Redis.Autofac)](https://www.nuget.org/packages/AopCaching.Redis.Autofac)
 AopCaching.Redis.DependencyInjection|[![NuGet package](https://buildstats.info/nuget/AopCaching.Redis.DependencyInjection)](https://www.nuget.org/packages/AopCaching.Redis.DependencyInjection)
 
-# Dependency
+# Dependencies
 [AspectCore](https://github.com/dotnetcore/AspectCore-Framework) is an Aspect-Oriented Programming based cross platform framework for .NET Core and .NET Framework.
-
 Core support for aspect-interceptor,dependency injection integration , web applications , data validation , and more.
+
+[CSRedisCore](https://github.com/2881099/csredis) is a High-performance redis client
 
 
 # Usage
