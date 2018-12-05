@@ -5,7 +5,7 @@ namespace AopCaching.Core
 {
 	[NonAspect]
 	[AttributeUsage(AttributeTargets.Method)]
-	public class AspectCachingAttribute : Attribute
+	public class AopCachingAttribute : Attribute
 	{
 		/// <summary>
 		/// Cached key

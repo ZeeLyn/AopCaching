@@ -10,7 +10,7 @@ using BloomFilter;
 namespace AopCaching.Core
 {
 	[NonAspect]
-	public class AspectCachingInterceptor : AbstractInterceptor
+	public class AopCachingInterceptor : AbstractInterceptor
 	{
 		[FromContainer] public IAopCaching Cache { get; set; }
 
@@ -23,7 +23,7 @@ namespace AopCaching.Core
 
 		private static readonly MethodInfo TaskResultMethod;
 
-		static AspectCachingInterceptor()
+		static AopCachingInterceptor()
 		{
 			TaskResultMethod = typeof(Task).GetMethods()
 				.First(p => p.Name == "FromResult" && p.ContainsGenericParameters);
@@ -35,8 +35,8 @@ namespace AopCaching.Core
 						  new BaseCacheOptions();
 			var attribute =
 				context.ServiceMethod.GetCustomAttributes(true)
-						.FirstOrDefault(p => p.GetType() == typeof(AspectCachingAttribute))
-					as AspectCachingAttribute;
+						.FirstOrDefault(p => p.GetType() == typeof(AopCachingAttribute))
+					as AopCachingAttribute;
 
 			var returnType = context.IsAsync()
 				? context.ServiceMethod.ReturnType.GetGenericArguments().First()

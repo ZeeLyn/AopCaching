@@ -16,8 +16,8 @@ namespace AopCaching.Core
 		public string GeneratorKey(MethodInfo methodInfo, object[] args, string customKey = "", string prefix = "", bool shortKey = false)
 		{
 			var attribute =
-				methodInfo.GetCustomAttributes(true).FirstOrDefault(p => p.GetType() == typeof(AspectCachingAttribute))
-					as AspectCachingAttribute;
+				methodInfo.GetCustomAttributes(true).FirstOrDefault(p => p.GetType() == typeof(AopCachingAttribute))
+					as AopCachingAttribute;
 			if (attribute == null || string.IsNullOrWhiteSpace(attribute.Key))
 			{
 				var typeName = methodInfo.DeclaringType?.FullName;

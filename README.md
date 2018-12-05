@@ -1,10 +1,10 @@
-# AspectCaching
+# AopCaching
 A aop cache library, No code intrusion on the cached method. Support memory and redis,redis support partition. And support bloom filter.
 
 # Packages & Status
 Packages | NuGet
 ---------|------
-AspectCaching.Core|[![NuGet package](https://buildstats.info/nuget/Extensions.Configuration.Consul)](https://www.nuget.org/packages/Extensions.Configuration.Consul)
+AopCaching.Core|[![NuGet package](https://buildstats.info/nuget/Extensions.Configuration.Consul)](https://www.nuget.org/packages/Extensions.Configuration.Consul)
 
 # Usage
 ### Use Autofac
@@ -15,14 +15,14 @@ public IServiceProvider ConfigureServices(IServiceCollection services)
 			var builder = new ContainerBuilder();
 			builder.Populate(services);
 
-			builder.AddAspectCacheInRedis(options =>
+			builder.AddAopCacheInRedis(options =>
 			{
 				options.Endpoints = new[] { "localhost:6379,password=123456,defaultDatabase=1", "localhost:6380,password=123456,defaultDatabase=1" };
 				options.Expiration = TimeSpan.FromMinutes(10);
                 options.UsePartition = true;
 				options.CacheMethodFilter = new CacheMethodFilter
 				{
-					IncludeService = new[] { "AspectCaching.WebApi.CacheService" }
+					IncludeService = new[] { "WebApplication.CacheService" }
 				};
 				options.PreventPenetrationPolicy = new PreventPenetrationPolicy
 				{
@@ -52,14 +52,14 @@ public IServiceProvider ConfigureServices(IServiceCollection services)
 public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddControllersAsServices();
-			services.AddAspectCacheInRedis(options =>
+			services.AddAopCacheInRedis(options =>
 			{
 				options.Endpoints = new[] { "localhost:6379,password=123456,defaultDatabase=1", "localhost:6380,password=123456,defaultDatabase=1" };
 				options.Expiration = TimeSpan.FromMinutes(10);
                 options.UsePartition = true;
 				options.CacheMethodFilter = new CacheMethodFilter
 				{
-					IncludeService = new[] { "AspectCaching.WebApi.CacheService" }
+					IncludeService = new[] { "WebApplication.CacheService" }
 				};
 				options.PreventPenetrationPolicy = new PreventPenetrationPolicy
 				{
@@ -84,7 +84,7 @@ public IServiceProvider ConfigureServices(IServiceCollection services)
 ```csharp
 	public class CacheService
 	{
-		[AspectCaching(Key = "GetTime:{0}", BloomFilter = OptionBoolean.Enable, Expiration = 30)]
+		[AopCaching(Key = "GetTime:{0}", BloomFilter = OptionBoolean.Enable, Expiration = 30)]
 		public virtual DateTime GetTime(int id)
 		{
 			return DateTime.Now;

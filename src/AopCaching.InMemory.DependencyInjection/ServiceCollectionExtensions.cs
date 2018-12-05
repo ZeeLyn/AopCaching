@@ -45,7 +45,7 @@ namespace AopCaching.InMemory.DependencyInjection
 				configurator.NonAspectPredicates.Add(method => method.ReturnType == typeof(void) || method.ReturnType == typeof(Task));
 
 				if (options.CacheMethodFilter?.IncludeService?.Any() ?? false)
-					configurator.Interceptors.AddTyped<AspectCachingInterceptor>(options.CacheMethodFilter
+					configurator.Interceptors.AddTyped<AopCachingInterceptor>(options.CacheMethodFilter
 						.IncludeService.Select(Predicates.ForService).ToArray());
 				if (options.CacheMethodFilter?.ExcludeService?.Any() ?? false)
 					foreach (var item in options.CacheMethodFilter?.ExcludeService)
@@ -54,7 +54,7 @@ namespace AopCaching.InMemory.DependencyInjection
 					}
 
 				if (options.CacheMethodFilter?.IncludeMethod?.Any() ?? false)
-					configurator.Interceptors.AddTyped<AspectCachingInterceptor>(options.CacheMethodFilter
+					configurator.Interceptors.AddTyped<AopCachingInterceptor>(options.CacheMethodFilter
 						.IncludeMethod.Select(Predicates.ForMethod).ToArray());
 				if (options.CacheMethodFilter?.ExcludeMethod?.Any() ?? false)
 					foreach (var item in options.CacheMethodFilter?.ExcludeMethod)
@@ -63,7 +63,7 @@ namespace AopCaching.InMemory.DependencyInjection
 					}
 
 				if (options.CacheMethodFilter?.IncludeNameSpace?.Any() ?? false)
-					configurator.Interceptors.AddTyped<AspectCachingInterceptor>(options.CacheMethodFilter
+					configurator.Interceptors.AddTyped<AopCachingInterceptor>(options.CacheMethodFilter
 						.IncludeNameSpace.Select(Predicates.ForNameSpace).ToArray());
 				if (options.CacheMethodFilter?.ExcludeNameSpace?.Any() ?? false)
 					foreach (var item in options.CacheMethodFilter?.ExcludeNameSpace)
