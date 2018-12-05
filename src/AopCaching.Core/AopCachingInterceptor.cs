@@ -43,16 +43,16 @@ namespace AopCaching.Core
 				: context.ServiceMethod.ReturnType;
 
 			var shortKey = options.ShortKey;
-			if (attribute != null && attribute.ShortKey != AspectCacheFunctionSwitch.Ignore)
-				shortKey = attribute.ShortKey == AspectCacheFunctionSwitch.Enable;
+			if (attribute != null && attribute.ShortKey != AopCacheFunctionSwitch.Ignore)
+				shortKey = attribute.ShortKey == AopCacheFunctionSwitch.Enable;
 
 			var key = KeyGenerator.GeneratorKey(context.ServiceMethod, context.Parameters, attribute?.Key,
 				options.CacheKeyPrefix, shortKey);
 
 			var enableBloomFilter = options.PreventPenetrationPolicy?.BloomFilterPolicy?.Enable ?? false;
-			if (attribute != null && attribute.BloomFilter != AspectCacheFunctionSwitch.Ignore)
+			if (attribute != null && attribute.BloomFilter != AopCacheFunctionSwitch.Ignore)
 			{
-				enableBloomFilter = attribute.BloomFilter == AspectCacheFunctionSwitch.Enable;
+				enableBloomFilter = attribute.BloomFilter == AopCacheFunctionSwitch.Enable;
 			}
 
 			if (enableBloomFilter && BloomFilter.Contains(key.AsBytes()))
@@ -84,8 +84,8 @@ namespace AopCaching.Core
 
 				if (attribute != null)
 				{
-					if (attribute.NoneResultForceSetKey != AspectCacheFunctionSwitch.Ignore)
-						noneResultForceSetKey = attribute.NoneResultForceSetKey == AspectCacheFunctionSwitch.Enable;
+					if (attribute.NoneResultForceSetKey != AopCacheFunctionSwitch.Ignore)
+						noneResultForceSetKey = attribute.NoneResultForceSetKey == AopCacheFunctionSwitch.Enable;
 					if (attribute.Expiration >= 0)
 						expire = TimeSpan.FromSeconds(attribute.Expiration);
 				}

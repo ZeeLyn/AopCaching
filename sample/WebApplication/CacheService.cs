@@ -6,7 +6,7 @@ namespace WebApplication
 {
 	public class CacheService
 	{
-		[AopCaching(Key = "GetTime", BloomFilter = AspectCacheFunctionSwitch.Enable, Expiration = 30, ShortKey = AspectCacheFunctionSwitch.Disable)]
+		[AopCaching(Key = "GetTime", BloomFilter = AopCacheFunctionSwitch.Enable, Expiration = 30, ShortKey = AopCacheFunctionSwitch.Disable)]
 		public virtual DateTime GetTime()
 		{
 			Console.WriteLine($"--------------exec GetTime---------------");

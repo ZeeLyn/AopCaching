@@ -16,7 +16,7 @@ namespace AopCaching.Core
 		/// <summary>
 		/// Generate a 32-character MD5 string key that takes up little space but is poorly readable.
 		/// </summary>
-		public AspectCacheFunctionSwitch ShortKey { get; set; } = AspectCacheFunctionSwitch.Ignore;
+		public AopCacheFunctionSwitch ShortKey { get; set; } = AopCacheFunctionSwitch.Ignore;
 
 		/// <summary>
 		/// Expiration time(second)
@@ -26,7 +26,7 @@ namespace AopCaching.Core
 		/// <summary>
 		/// Create a key when the method return value has no result set, preventing cache penetration.
 		/// </summary>
-		public AspectCacheFunctionSwitch NoneResultForceSetKey { get; set; } = AspectCacheFunctionSwitch.Ignore;
+		public AopCacheFunctionSwitch NoneResultForceSetKey { get; set; } = AopCacheFunctionSwitch.Ignore;
 
 		/// <summary>
 		/// The expiration time of the key when the method returns no value set.
@@ -36,11 +36,11 @@ namespace AopCaching.Core
 		/// <summary>
 		/// Use bloom filter.
 		/// </summary>
-		public AspectCacheFunctionSwitch BloomFilter { get; set; } = AspectCacheFunctionSwitch.Ignore;
+		public AopCacheFunctionSwitch BloomFilter { get; set; } = AopCacheFunctionSwitch.Ignore;
 	}
 
 
-	public enum AspectCacheFunctionSwitch
+	public enum AopCacheFunctionSwitch
 	{
 		Ignore = -1,
 		Disable = 0,
