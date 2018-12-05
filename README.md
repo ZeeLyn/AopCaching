@@ -1,10 +1,40 @@
+<div style="text-align:center;">
+<img width="200" style="margin:auto;" src="https://raw.githubusercontent.com/ww198643/AopCaching/master/icon.png" />
+</div>
+
+
 # AopCaching
 A aop cache library, No code intrusion on the cached method. Support memory and redis,redis support partition. And support bloom filter.
 
+# Note
+The proxy method must be a virtual method or an interface.
+
 # Packages & Status
+
+### Core
 Packages | NuGet
 ---------|------
-AopCaching.Core|[![NuGet package](https://buildstats.info/nuget/Extensions.Configuration.Consul)](https://www.nuget.org/packages/Extensions.Configuration.Consul)
+AopCaching.Core|[![NuGet package](https://buildstats.info/nuget/AopCaching.Core)](https://www.nuget.org/packages/AopCaching.Core)
+
+### Provider
+Packages | NuGet
+---------|------
+AopCaching.InMemory|[![NuGet package](https://buildstats.info/nuget/AopCaching.InMemory)](https://www.nuget.org/packages/AopCaching.InMemory)
+AopCaching.Redis|[![NuGet package](https://buildstats.info/nuget/AopCaching.Redis)](https://www.nuget.org/packages/AopCaching.Redis)
+
+### Injection
+Packages | NuGet
+---------|------
+AopCaching.InMemory.Autofac|[![NuGet package](https://buildstats.info/nuget/AopCaching.InMemory.Autofac)](https://www.nuget.org/packages/AopCaching.InMemory.Autofac)
+AopCaching.InMemory.DependencyInjection|[![NuGet package](https://buildstats.info/nuget/AopCaching.InMemory.DependencyInjection)](https://www.nuget.org/packages/AopCaching.InMemory.DependencyInjection)
+AopCaching.Redis.Autofac|[![NuGet package](https://buildstats.info/nuget/AopCaching.Redis.Autofac)](https://www.nuget.org/packages/AopCaching.Redis.Autofac)
+AopCaching.Redis.DependencyInjection|[![NuGet package](https://buildstats.info/nuget/AopCaching.Redis.DependencyInjection)](https://www.nuget.org/packages/AopCaching.Redis.DependencyInjection)
+
+# Dependency
+[AspectCore](https://github.com/dotnetcore/AspectCore-Framework) is an Aspect-Oriented Programming based cross platform framework for .NET Core and .NET Framework.
+
+Core support for aspect-interceptor,dependency injection integration , web applications , data validation , and more.
+
 
 # Usage
 ### Use Autofac
