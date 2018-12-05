@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using AopCaching.Core;
+using AopCaching.InMemory.Autofac;
+using AopCaching.InMemory.DependencyInjection;
 using AopCaching.Redis.Autofac;
+using AopCaching.Redis.DependencyInjection;
+using AspectCore.Extensions.DependencyInjection;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -26,25 +30,52 @@ namespace WebApplication
 		public IServiceProvider ConfigureServices(IServiceCollection services)
 		{
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddControllersAsServices();
+			services.AddSingleton<CacheService>();
+
 
 			#region DependencyInjection
 
-			//services.AddSingleton<CacheService>();
-			//services.AddAspectCacheInRedis(options =>
+			#region Use redis
+
+			//services.AddAopCacheInRedis(options =>
 			//{
 			//	options.Endpoints = new[] { "192.168.1.254:6379,password=nihao123,defaultDatabase=15", "192.168.1.253:6379,password=nihao123,defaultDatabase=15" };
-			//	//options.UsePartition = true;
+			//	options.UsePartition = true;
 			//	options.Expiration = TimeSpan.FromMinutes(10);
 			//	options.CacheMethodFilter = new CacheMethodFilter
 			//	{
-			//		IncludeService = new[] { "AspectCaching.WebApi.CacheService" }
+			//		IncludeService = new[] { "WebApplication.*Service" }
 			//	};
 			//	options.PreventPenetrationPolicy = new PreventPenetrationPolicy
 			//	{
-
-			//		NoneResultKeyExpiration = TimeSpan.FromMinutes(10)
+			//		BasicPolicy = new BasicPolicy
+			//		{
+			//			NoneResultKeyExpiration = TimeSpan.FromMinutes(10)
+			//		},
+			//		BloomFilterPolicy = new BloomFilterPolicy
+			//		{
+			//			Enable = true,
+			//		}
 			//	};
 			//});
+			#endregion
+
+			#region Use memory
+			//services.AddAopCacheInMemory(options =>
+			//{
+			//	options.CacheMethodFilter = new CacheMethodFilter
+			//	{
+			//		IncludeService = new[] { "WebApplication.*Service" }
+			//	};
+			//	options.PreventPenetrationPolicy = new PreventPenetrationPolicy
+			//	{
+			//		BloomFilterPolicy = new BloomFilterPolicy
+			//		{
+			//			Enable = true
+			//		}
+			//	};
+			//});
+			#endregion
 
 			//return services.BuildAspectInjectorProvider();
 			#endregion
@@ -54,16 +85,25 @@ namespace WebApplication
 			var builder = new ContainerBuilder();
 			builder.Populate(services);
 
-			//builder.AddAspectCacheInMemory(options =>
+
+			#region Use memory
+			//builder.AddAopCacheInMemory(options =>
 			//{
 			//	options.CacheMethodFilter = new CacheMethodFilter
 			//	{
-			//		IncludeService = new[] { "AspectCaching.WebApi.CacheService" }
+			//		IncludeService = new[] { "WebApplication.*CacheService" }
+			//	};
+			//	options.PreventPenetrationPolicy = new PreventPenetrationPolicy
+			//	{
+			//		BloomFilterPolicy = new BloomFilterPolicy
+			//		{
+			//			Enable = true
+			//		}
 			//	};
 			//});
+			#endregion
 
-
-
+			#region Use redis
 			builder.AddAopCacheInRedis(options =>
 			{
 				options.Endpoints = new[] { "192.168.1.254:6379,password=nihao123,defaultDatabase=15", "192.168.1.253:6379,password=nihao123,defaultDatabase=15" };
@@ -86,11 +126,11 @@ namespace WebApplication
 					}
 				};
 			});
+			#endregion
 
-			builder.RegisterType<CacheService>().PropertiesAutowired().SingleInstance();
 			builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly())
-				.Where(t => t.Name.EndsWith("Controller"))
-				.PropertiesAutowired().InstancePerLifetimeScope();
+							.Where(t => t.Name.EndsWith("Controller"))
+							.PropertiesAutowired().InstancePerLifetimeScope();
 			ApplicationContainer = builder.Build();
 			return new AutofacServiceProvider(ApplicationContainer);
 
