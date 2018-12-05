@@ -1,6 +1,4 @@
-<div style="text-align:center;">
-<img width="200" style="margin:auto;" src="https://raw.githubusercontent.com/ww198643/AopCaching/master/icon.png" />
-</div>
+![](banner.png?raw=true)
 
 
 # AopCaching
