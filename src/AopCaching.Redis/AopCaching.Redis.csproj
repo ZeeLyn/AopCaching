@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageTags>Cache,Caching,InMemory,Redis,AOP,Aspect,Autofac,DependencyInjection</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/ww198643/AopCaching/master/icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/ww198643/AopCaching</PackageProjectUrl>
+    <Description>AopCaching - A aop cache library, that does not intrude on existing project code. Support memory and redis.</Description>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Caching.CSRedis" Version="3.0.25" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AopCaching.Core\AopCaching.Core.csproj" />
+  </ItemGroup>
+
+</Project>
