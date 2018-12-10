@@ -8,6 +8,7 @@
     <PackageProjectUrl>https://github.com/ww198643/AopCaching</PackageProjectUrl>
     <Description>AopCaching - A aop cache library, that does not intrude on existing project code. Support memory and redis.</Description>
     <Version>0.1.1</Version>
+    <Authors>Kakous</Authors>
   </PropertyGroup>
 
   <ItemGroup>
