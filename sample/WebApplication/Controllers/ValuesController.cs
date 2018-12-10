@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace WebApplication.Controllers
 {
@@ -18,6 +20,7 @@ namespace WebApplication.Controllers
 		[HttpGet("{str?}")]
 		public async Task<IActionResult> Get()
 		{
+
 			CacheHelper.GetStringVoid();
 			await CacheHelper.GetStringTask();
 			return Ok(new
@@ -43,7 +46,9 @@ namespace WebApplication.Controllers
 				{
 					Name = "Jack",
 					Age = 18
-				})
+				}),
+				GetGenericTypeBool = CacheHelper.GetGenericType<bool>(),
+				GetGenericTypeInt = CacheHelper.GetGenericType<int>()
 			});
 
 		}

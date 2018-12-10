@@ -57,7 +57,7 @@ namespace AopCaching.Core
 
 			if (enableBloomFilter && BloomFilter.Contains(key.AsBytes()))
 			{
-				Console.WriteLine($"-----------------bloom filter {context.ServiceMethod.Name}---------------");
+				//Console.WriteLine($"-----------------bloom filter {context.ServiceMethod.Name}---------------");
 				context.ReturnValue = context.IsAsync()
 					? TypeofTaskResultMethod.GetOrAdd(returnType,
 							t => TaskResultMethod.MakeGenericMethod(returnType))

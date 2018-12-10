@@ -33,6 +33,7 @@ Packages | Description
 ---------|------
 [AspectCore](https://github.com/dotnetcore/AspectCore-Framework) | An Aspect-Oriented Programming based cross platform framework for .NET Core and .NET Framework.Core support for aspect-interceptor,dependency injection integration , web applications , data validation , and more.
 [CSRedisCore](https://github.com/2881099/csredis) | A High-performance redis client.
+[BloomFilter.NetCore](https://github.com/vla/BloomFilter.NetCore) | Library Bloom filters in C# with optional Redis-backing.
 
 
 # Usage

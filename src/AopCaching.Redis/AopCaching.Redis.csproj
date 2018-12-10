@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Caching.CSRedis" Version="3.0.25" />
+    <PackageReference Include="Caching.CSRedis" Version="3.0.27" />
   </ItemGroup>
 
   <ItemGroup>
