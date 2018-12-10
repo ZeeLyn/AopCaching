@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <PackageProjectUrl>https://github.com/ww198643/AopCaching</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/ww198643/AopCaching/master/icon.png</PackageIconUrl>
     <Description>AopCaching - A aop cache library, that does not intrude on existing project code. Support memory and redis.</Description>
     <PackageTags>Cache,Caching,InMemory,Redis,AOP,Aspect,Autofac,DependencyInjection</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Kakous</Authors>
   </PropertyGroup>
 
   <ItemGroup>

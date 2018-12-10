@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AopCaching.Core;
+using Newtonsoft.Json;
 
 namespace WebApplication
 {
@@ -102,6 +103,24 @@ namespace WebApplication
 		public virtual async Task GetStringTask()
 		{
 			Console.WriteLine($"--------------exec GetStringTask---------------");
+		}
+
+		public virtual T GetGenericType<T>()
+		{
+			object value;
+			if (typeof(T) == typeof(int))
+			{
+				value = 99;
+				return (T)value;
+			}
+
+			if (typeof(T) == typeof(bool))
+			{
+				value = true;
+				return (T)value;
+			}
+
+			return default(T);
 		}
 	}
 
