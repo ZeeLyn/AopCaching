@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using AspectCore.DynamicProxy;
-using Newtonsoft.Json;
+using MessagePack;
 
 
 namespace AopCaching.Core
@@ -23,11 +23,12 @@ namespace AopCaching.Core
 				var typeName = methodInfo.DeclaringType?.FullName;
 				var methodName = methodInfo.Name;
 				var generics = methodInfo.GetGenericArguments();
+
 				if (shortKey)
 					return
-						MD5($"{typeName}{LinkString}{methodName}{(generics.Any() ? LinkString : "")}{(generics.Any() ? $"<{string.Join(",", generics.Select(p => p))}>" : "")}{(args.Any() ? LinkString : "")}{(args.Any() ? JsonConvert.SerializeObject(args) : "")}");
+						MD5($"{typeName}{LinkString}{methodName}{(generics.Any() ? LinkString : "")}{(generics.Any() ? $"<{string.Join(",", generics.Select(p => p))}>" : "")}{(args.Any() ? LinkString : "")}{(args.Any() ? DataSerializer.ToJson(args) : "")}");
 				return
-					$"{(string.IsNullOrWhiteSpace(prefix) ? "" : $"{prefix}{LinkString}")}{typeName}{LinkString}{methodName}{(generics.Any() ? LinkString : "")}{(generics.Any() ? $"<{string.Join(",", generics.Select(p => p))}>" : "")}{(args.Any() ? LinkString : "")}{(args.Any() ? MD5(JsonConvert.SerializeObject(args)) : "")}";
+					$"{(string.IsNullOrWhiteSpace(prefix) ? "" : $"{prefix}{LinkString}")}{typeName}{LinkString}{methodName}{(generics.Any() ? LinkString : "")}{(generics.Any() ? $"<{string.Join(",", generics.Select(p => p))}>" : "")}{(args.Any() ? LinkString : "")}{(args.Any() ? MD5(DataSerializer.ToJson(args)) : "")}";
 			}
 			return string.IsNullOrWhiteSpace(prefix) ? "" : $"{prefix}{LinkString}" + string.Format(attribute.Key, args);
 		}

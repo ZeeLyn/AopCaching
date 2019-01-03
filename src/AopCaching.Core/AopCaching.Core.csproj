@@ -9,13 +9,14 @@
     <PackageTags>Cache,Caching,InMemory,Redis,AOP,Aspect,Autofac,DependencyInjection</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Kakous</Authors>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AspectCore.Abstractions" Version="1.1.0" />
     <PackageReference Include="AspectCore.Core" Version="1.1.0" />
     <PackageReference Include="BloomFilter.NetCore" Version="0.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="MessagePack" Version="1.7.3.4" />
   </ItemGroup>
 
 </Project>
