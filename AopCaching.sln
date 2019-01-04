@@ -5,23 +5,23 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C3E2A716-FA8D-41D7-AA9A-2985E7F4ADB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopCaching.Core", "src\AopCaching.Core\AopCaching.Core.csproj", "{9ECFF711-1C13-4AF8-BF04-23F88681A8E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AopCaching.Core", "src\AopCaching.Core\AopCaching.Core.csproj", "{9ECFF711-1C13-4AF8-BF04-23F88681A8E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopCaching.InMemory", "src\AopCaching.InMemory\AopCaching.InMemory.csproj", "{B6199FAB-89C3-4918-BF2D-2095683575E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AopCaching.InMemory", "src\AopCaching.InMemory\AopCaching.InMemory.csproj", "{B6199FAB-89C3-4918-BF2D-2095683575E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopCaching.InMemory.Autofac", "src\AopCaching.InMemory.Autofac\AopCaching.InMemory.Autofac.csproj", "{B6556A5B-5EA4-441E-B658-4061811A71CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AopCaching.InMemory.Autofac", "src\AopCaching.InMemory.Autofac\AopCaching.InMemory.Autofac.csproj", "{B6556A5B-5EA4-441E-B658-4061811A71CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopCaching.InMemory.DependencyInjection", "src\AopCaching.InMemory.DependencyInjection\AopCaching.InMemory.DependencyInjection.csproj", "{919187C3-5CBF-4978-A0DA-52E9D3F9AA1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AopCaching.InMemory.DependencyInjection", "src\AopCaching.InMemory.DependencyInjection\AopCaching.InMemory.DependencyInjection.csproj", "{919187C3-5CBF-4978-A0DA-52E9D3F9AA1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopCaching.Redis", "src\AopCaching.Redis\AopCaching.Redis.csproj", "{894059BA-AA61-4E84-9421-2B0B314B9CD1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AopCaching.Redis", "src\AopCaching.Redis\AopCaching.Redis.csproj", "{894059BA-AA61-4E84-9421-2B0B314B9CD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopCaching.Redis.Autofac", "src\AopCaching.Redis.Autofac\AopCaching.Redis.Autofac.csproj", "{4FF079F8-AA14-4764-8F52-91D9B8969C98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AopCaching.Redis.Autofac", "src\AopCaching.Redis.Autofac\AopCaching.Redis.Autofac.csproj", "{4FF079F8-AA14-4764-8F52-91D9B8969C98}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AopCaching.Redis.DependencyInjection", "src\AopCaching.Redis.DependencyInjection\AopCaching.Redis.DependencyInjection.csproj", "{D8F92324-3089-492D-8E70-93258EE5D3F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AopCaching.Redis.DependencyInjection", "src\AopCaching.Redis.DependencyInjection\AopCaching.Redis.DependencyInjection.csproj", "{D8F92324-3089-492D-8E70-93258EE5D3F9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{93783684-D3C2-4D76-9B41-A5B16AB72964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "sample\WebApplication\WebApplication.csproj", "{C1760594-95A7-4944-B5FB-28AC8F345BEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "sample\WebApplication\WebApplication.csproj", "{C1760594-95A7-4944-B5FB-28AC8F345BEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

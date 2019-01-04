@@ -5,16 +5,17 @@ using Newtonsoft.Json;
 
 namespace WebApplication
 {
+	[AopCaching]
 	public class CacheService
 	{
-		//[AopCaching(Key = "GetTime", BloomFilter = AopCacheFunctionSwitch.Enable, Expiration = 30, ShortKey = AopCacheFunctionSwitch.Disable)]
+
+		[AopCaching(Key = "GetTime", BloomFilter = AopCacheFunctionSwitch.Enable, Expiration = 30, ShortKey = AopCacheFunctionSwitch.Disable)]
 		public virtual DateTime GetTime()
 		{
 			Console.WriteLine($"--------------exec GetTime---------------");
 			return DateTime.Now;
 		}
-
-		//[AspectCaching(NoneResultKeyExpiration = 20)]
+		[NonAopCaching]
 		public virtual async Task<DateTime> GetTimeAsync()
 		{
 			Console.WriteLine($"--------------exec GetTimeAsync---------------");

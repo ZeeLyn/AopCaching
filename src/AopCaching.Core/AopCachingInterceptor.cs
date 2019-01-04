@@ -31,12 +31,27 @@ namespace AopCaching.Core
 
 		public override async Task Invoke(AspectContext context, AspectDelegate next)
 		{
+			var methodAttrs = context.ServiceMethod.GetCustomAttributes(true);
+			if (methodAttrs.Any(p => p.GetType() == typeof(NonAopCachingAttribute)))
+			{
+				await next(context);
+				return;
+			}
+
+			var classAttr =
+				context.ServiceMethod.DeclaringType?.GetCustomAttribute(typeof(NonAopCachingAttribute), true);
+			if (classAttr != null)
+			{
+				await next(context);
+				return;
+			}
+
+			var attribute = methodAttrs.FirstOrDefault(p => p.GetType() == typeof(AopCachingAttribute))
+					as AopCachingAttribute;
+
 			var options = context.ServiceProvider.GetService(typeof(BaseCacheOptions)) as BaseCacheOptions ??
 						  new BaseCacheOptions();
-			var attribute =
-				context.ServiceMethod.GetCustomAttributes(true)
-						.FirstOrDefault(p => p.GetType() == typeof(AopCachingAttribute))
-					as AopCachingAttribute;
+
 
 			var returnType = context.IsAsync()
 				? context.ServiceMethod.ReturnType.GetGenericArguments().First()

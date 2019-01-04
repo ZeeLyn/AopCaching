@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Common;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -20,7 +21,7 @@ namespace WebApplication.Controllers
 		[HttpGet("{str?}")]
 		public async Task<IActionResult> Get()
 		{
-
+			var c = new Class1();
 			CacheHelper.GetStringVoid();
 			await CacheHelper.GetStringTask();
 			return Ok(new

@@ -4,7 +4,7 @@ using AspectCore.DynamicProxy;
 namespace AopCaching.Core
 {
 	[NonAspect]
-	[AttributeUsage(AttributeTargets.Method)]
+	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
 	public class AopCachingAttribute : Attribute
 	{
 		/// <summary>

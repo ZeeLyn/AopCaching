@@ -17,6 +17,13 @@
     <PackageReference Include="AspectCore.Core" Version="1.1.0" />
     <PackageReference Include="BloomFilter.NetCore" Version="0.0.3" />
     <PackageReference Include="MessagePack" Version="1.7.3.4" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.DependencyModel">
+      <HintPath>C:\Users\OWEN\.nuget\packages\microsoft.extensions.dependencymodel\2.1.0\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
