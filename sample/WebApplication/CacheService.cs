@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AopCaching.Core;
-using Newtonsoft.Json;
 
 namespace WebApplication
 {
-	[AopCaching]
+
 	public class CacheService
 	{
-
 		[AopCaching(Key = "GetTime", BloomFilter = AopCacheFunctionSwitch.Enable, Expiration = 30, ShortKey = AopCacheFunctionSwitch.Disable)]
 		public virtual DateTime GetTime()
 		{
 			Console.WriteLine($"--------------exec GetTime---------------");
 			return DateTime.Now;
 		}
+
 		[NonAopCaching]
 		public virtual async Task<DateTime> GetTimeAsync()
 		{

@@ -2,7 +2,7 @@
 
 namespace AopCaching.Core
 {
-	[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
+	[AttributeUsage(AttributeTargets.Method)]
 	public class NonAopCachingAttribute : Attribute
 	{
 	}

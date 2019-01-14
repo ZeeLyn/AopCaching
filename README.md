@@ -114,7 +114,20 @@ public IServiceProvider ConfigureServices(IServiceCollection services)
 ```csharp
 	public class CacheService
 	{
-		[AopCaching(Key = "GetTime:{0}", BloomFilter = OptionBoolean.Enable, Expiration = 30)]
+		[AopCaching(Key = "GetTime:{0}", BloomFilter = AopCacheFunctionSwitch.Enable, Expiration = 30)]
+		public virtual DateTime GetTime(int id)
+		{
+			return DateTime.Now;
+		}
+    }
+```
+
+### Exclude methods
+
+```csharp
+	public class CacheService
+	{
+		[NonAopCaching]
 		public virtual DateTime GetTime(int id)
 		{
 			return DateTime.Now;

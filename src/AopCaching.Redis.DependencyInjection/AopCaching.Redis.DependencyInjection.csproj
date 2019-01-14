@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.2</Version>
+    <Version>0.1.3</Version>
     <PackageTags>Cache,Caching,InMemory,Redis,AOP,Aspect,Autofac,DependencyInjection</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/ww198643/AopCaching/master/icon.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/ww198643/AopCaching</PackageProjectUrl>

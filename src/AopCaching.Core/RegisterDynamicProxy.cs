@@ -52,25 +52,15 @@ namespace AopCaching.Core
 					configurator.NonAspectPredicates.AddNamespace(item);
 				}
 
-			var assemblies = DependencyContext.Default.RuntimeLibraries.SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default).Where(p => !p.Name.StartsWith("Microsoft", StringComparison.CurrentCultureIgnoreCase) && !p.Name.StartsWith("System", StringComparison.CurrentCultureIgnoreCase) && !p.Name.StartsWith("Aspect", StringComparison.CurrentCultureIgnoreCase)).Select(z => Assembly.Load(new AssemblyName(z.Name)))).Where(p => !p.IsDynamic).ToList();
+			var ignoreAssembly = new[] { "Microsoft", "System", "MessagePack", "SOS.NETCore", "WindowsBase", "mscorlib", "netstandard", "AspectCore", "Autofac", "BloomFilter", "CSRedisCore", "AopCaching", "Newtonsoft.Json", "Remotion.Linq", "Caching.CSRedis", "SafeObjectPool" };
+			var assemblies = DependencyContext.Default.RuntimeLibraries.SelectMany(i => i.GetDefaultAssemblyNames(DependencyContext.Default).Where(p => !ignoreAssembly.Any(ign => p.Name.StartsWith(ign, StringComparison.CurrentCultureIgnoreCase))).Select(z => Assembly.Load(new AssemblyName(z.Name)))).Where(p => !p.IsDynamic).ToList();
 
 			foreach (var assembly in assemblies)
 			{
 				var types = assembly.GetExportedTypes();
 				foreach (var type in types)
 				{
-					var typeAttrs = type.GetCustomAttributes(true);
-					if (typeAttrs.Any(p => p.GetType() == typeof(AopCachingAttribute)))
-					{
-						configurator.Interceptors.AddTyped<AopCachingInterceptor>(Predicates.ForService(type.FullName));
-					}
-
-					if (typeAttrs.Any(p => p.GetType() == typeof(NonAopCachingAttribute)))
-					{
-						configurator.NonAspectPredicates.AddService(type.FullName);
-					}
-					var methods = type.GetMethods();
-					foreach (var method in methods)
+					foreach (var method in type.GetMethods())
 					{
 						var methodAttrs = method.GetCustomAttributes(true);
 						if (methodAttrs.Any(p => p.GetType() == typeof(AopCachingAttribute)))
@@ -83,6 +73,19 @@ namespace AopCaching.Core
 							configurator.NonAspectPredicates.AddMethod(type.FullName, method.Name);
 						}
 					}
+
+					var typeAttrs = type.GetCustomAttributes(true);
+					if (typeAttrs.Any(p => p.GetType() == typeof(AopCachingAttribute)))
+					{
+						configurator.Interceptors.AddTyped<AopCachingInterceptor>(Predicates.ForService(type.FullName));
+					}
+
+					if (typeAttrs.Any(p => p.GetType() == typeof(NonAopCachingAttribute)))
+					{
+						configurator.NonAspectPredicates.AddService(type.FullName);
+					}
+
+
 				}
 			}
 		}
